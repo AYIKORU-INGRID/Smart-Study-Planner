@@ -1,9 +1,6 @@
 Data_file = "study_log.txt"
 def classify_session(duration):
-    """ Classify a study based on the duration(in minutes)
-    Short -> under 30 minutes
-    Medium -> under 30 to 90 minutes (inclusive)
-    Long -> over 90 minutes """
+    
     if duration < 30:
         return "Short"
     elif duration <= 90:
@@ -11,10 +8,7 @@ def classify_session(duration):
     else:
         return "Long"
 def add_session(sessions):
-    """Prompts the user forthe subject name,topic covered a date or day label
-    and the duration of the session in minutes. Ensures that the duration entered
-    is positive and keeps re-asking until the valid value is given
-    and also keeps the session in a list"""
+
     subject = input("Enter the subject name:").strip() 
     topic = input("Enter the topic:").strip() 
     date = input("Enter the date/day:").strip()
@@ -40,10 +34,7 @@ def add_session(sessions):
     print(f"\nSession added: {subject}({classify_session(duration)},{duration}min)\n")   
 
 def view_sessions(sessions):
-    """
-    Display every logged session in a neatly formatted table, including
-    the Short/Medium/Long classification for each one.
-    """
+
     if not sessions:
         print("\nNo study sessions have been logged yet.\n")
         return
@@ -66,11 +57,7 @@ def view_sessions(sessions):
  
  
 def search_by_subject(sessions, subject):
-    """
-    Display all sessions recorded for a given subject (case-insensitive
-    match) along with the total time spent on it. Shows a clear message
-    if no sessions match instead of an empty table.
-    """
+    
     matches = [s for s in sessions if s["subject"].lower() == subject.lower()]
  
     if not matches:
@@ -98,18 +85,12 @@ def search_by_subject(sessions, subject):
  
  
 def study_statistics(sessions):
-    """
-    Compute and display overall study statistics:
-    - total hours studied overall
-    - total hours studied per subject
-    - the subject with the least total study time (weakest area)
-    - the single longest session recorded
-    """
+
     if not sessions:
         print("\nNo study sessions have been logged yet, so no statistics to show.\n")
         return
  
-    # Build a dictionary mapping subject -> total minutes studied
+    
     subject_totals = {}
     for session in sessions:
         subject = session["subject"]
@@ -117,10 +98,10 @@ def study_statistics(sessions):
  
     total_minutes = sum(subject_totals.values())
  
-    # Subject with the least total study time = the weakest area
+    
     weakest_subject = min(subject_totals, key=subject_totals.get)
  
-    # The single longest session recorded, by duration
+    
     longest_session = max(sessions, key=lambda s: s["duration"])
  
     print("\n----- STUDY STATISTICS -----")
@@ -141,10 +122,7 @@ def study_statistics(sessions):
  
  
 def save_sessions(sessions, filename=Data_file):
-    """
-    Save every logged session to a text file, one session per line,
-    using '|' as a field separator. Called when the user exits.
-    """
+    
     with open(filename, "w") as file:
         for session in sessions:
             line = f"{session['subject']}|{session['topic']}|{session['date']}|{session['duration']}\n"
@@ -153,11 +131,7 @@ def save_sessions(sessions, filename=Data_file):
  
  
 def load_sessions(filename=Data_file):
-    """
-    Load sessions from the data file at programme start-up, if it
-    exists. Returns an empty list (instead of crashing) if the file
-    is missing, e.g. on the very first run of the programme.
-    """
+    
     sessions = []
     try:
         with open(filename, "r") as file:
@@ -175,7 +149,7 @@ def load_sessions(filename=Data_file):
                     }
                 )
     except FileNotFoundError:
-        # No saved data yet - that's fine, just start with an empty list
+        
         pass
  
     return sessions
@@ -193,11 +167,7 @@ def display_menu():
  
  
 def main():
-    """
-    Main programme loop. Loads any existing sessions on start-up,
-    displays the menu until the user chooses to exit, and rejects
-    invalid choices without crashing.
-    """
+    
     sessions = load_sessions()
     print(f"Loaded {len(sessions)} existing session(s) from {Data_file}.")
  
@@ -219,7 +189,7 @@ def main():
             print("Goodbye! Keep up the good study habits.")
             break
         else:
-            # Invalid choice - loop back to the menu instead of crashing
+            
             print("Invalid choice. Please enter a number from 1 to 5.")
  
  
