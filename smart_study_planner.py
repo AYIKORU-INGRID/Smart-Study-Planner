@@ -15,9 +15,9 @@ def add_session(sessions):
     and the duration of the session in minutes. Ensures that the duration entered
     is positive and keeps re-asking until the valid value is given
     and also keeps the session in a list"""
-    subject = input("Enter the subject name").strip() 
-    topic = input("Enter the topic").strip() 
-    date = input("Enter the date/day").strip()
+    subject = input("Enter the subject name:").strip() 
+    topic = input("Enter the topic:").strip() 
+    date = input("Enter the date/day:").strip()
 
     while True:
         duration_input = input("Enter the duration of session(in minutes): ").strip()
