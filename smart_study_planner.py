@@ -1,14 +1,30 @@
 DATA_FILE = "study_log.txt"
 
+def main():
+    # Load existing sessions from the data file, if it exists.
+    sessions = load_sessions()
 
-def classify_session(duration):
-    # Classify a study session based on its duration in minutes.
-    if duration < 30:
-        return "Short"
-    elif duration <= 90:
-        return "Medium"
-    else:
-        return "Long"
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-5): ").strip()
+
+        if choice == "1":
+            add_session(sessions)
+        elif choice == "2":
+            view_sessions(sessions)
+        elif choice == "3":
+            subject = input("Enter subject to search for: ")
+            search_by_subject(sessions, subject)
+        elif choice == "4":
+            study_statistics(sessions)
+        elif choice == "5":
+            save_sessions(sessions)
+            print("Exiting the Smart Study Planner. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+
 
 
 def add_session(sessions):
@@ -38,6 +54,14 @@ def add_session(sessions):
     sessions.append(session)
     print(f"\nSession added: {subject} ({classify_session(duration)}, {duration} min)\n")
 
+def classify_session(duration):
+    # Classify the session based on its duration.
+    if duration < 30:
+        return "Short"
+    elif 30 <= duration <= 60:
+        return "Medium"
+    else:
+        return "Long"
 
 def view_sessions(sessions):
     # Display all logged study sessions in a tabular format, including their classification.
@@ -172,32 +196,3 @@ def display_menu():
     print("================================")
 
 
-def main():
-    # Load existing sessions from the data file (if any) and enter the main menu loop.
-    sessions = load_sessions()
-    print(f"Loaded {len(sessions)} existing session(s) from {DATA_FILE}.")
-
-    while True:
-        display_menu()
-        choice = input("Enter your choice (1-5): ").strip()
-
-        if choice == "1":
-            add_session(sessions)
-        elif choice == "2":
-            view_sessions(sessions)
-        elif choice == "3":
-            subject = input("Enter subject to search for: ")
-            search_by_subject(sessions, subject)
-        elif choice == "4":
-            study_statistics(sessions)
-        elif choice == "5":
-            save_sessions(sessions)
-            print("Goodbye! Keep up the good study habits.")
-            break
-        else:
-            # Invalid choice - loop back to the menu instead of crashing
-            print("Invalid choice. Please enter a number from 1 to 5.")
-
-
-if __name__ == "__main__":
-    main()
