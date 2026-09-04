@@ -189,7 +189,7 @@ def main():
         elif choice == "2":
             view_sessions(sessions)
         elif choice == "3":
-            subject = input("Enter subject to search for: ").strip()
+            subject = input("Enter subject to search for: ")
             search_by_subject(sessions, subject)
         elif choice == "4":
             study_statistics(sessions)
