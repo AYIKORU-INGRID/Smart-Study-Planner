@@ -9,12 +9,12 @@ def classify_session(duration):
         return "Long"
 def add_session(sessions):
 
-    subject = input("Enter the subject name:").strip() 
-    topic = input("Enter the topic:").strip() 
-    date = input("Enter the date/day:").strip()
+    subject = input("Enter the subject name:")
+    topic = input("Enter the topic:")
+    date = input("Enter the date/day:")
 
     while True:
-        duration_input = input("Enter the duration of session(in minutes): ").strip()
+        duration_input = input("Enter the duration of session(in minutes): ")
 
         try:
            duration = float(duration_input)
@@ -195,4 +195,3 @@ def main():
  
 if __name__ == "__main__":
     main()         
-
