@@ -195,4 +195,5 @@ def display_menu():
     print("5. Save and exit")
     print("================================")
 
-
+if __name__ == "__main__":
+    main()
