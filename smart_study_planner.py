@@ -40,10 +40,7 @@ def add_session(sessions):
 
 
 def view_sessions(sessions):
-    """
-    Display every logged session in a neatly formatted table, including
-    the Short/Medium/Long classification for each one.
-    """
+    # Display all logged study sessions in a tabular format, including their classification.
     if not sessions:
         print("\nNo study sessions have been logged yet.\n")
         return
@@ -165,7 +162,7 @@ def load_sessions(filename=DATA_FILE):
 
 
 def display_menu():
-    """Print the main menu options."""
+    # Display the main menu options to the user.
     print("\n===== SMART STUDY PLANNER =====")
     print("1. Add a study session")
     print("2. View all sessions")
